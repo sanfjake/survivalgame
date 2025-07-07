@@ -146,3 +146,5 @@ if __name__ == "__main__":
 # Python Software Foundation. “json — JSON encoder and decoder.” Python Documentation, https://docs.python.org/3/library/json.html. Accessed July 7, 2025.
 # W3Schools. “Python If...Else.” https://www.w3schools.com/python/python_conditions.asp. Accessed July 7, 2025.
 # Real Python. “How to Use Python’s While Loop.” https://realpython.com/python-while-loop/. Accessed July 7, 2025.
+# Portions of this project were corrected from ChatGPT,
+# OpenAI's language model (https://chat.openai.com), accessed July 7, 2025.
