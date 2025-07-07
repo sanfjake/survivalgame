@@ -1,5 +1,5 @@
-import re
-import json
+import re  # Regular expression module for name validation (Python Software Foundation, 2023)
+import json  # JSON module for saving game data (Python Software Foundation, 2023)
 
 # Display game title and instructions
 def display_title():
@@ -9,16 +9,16 @@ def display_title():
     print("You are a young Scandrian warrior whose ship crashed onto Araluen.")
     print("Make your choices carefully to survive and escape back to your homeland.")
 
-# Validate player name using regex
+# Validate player name using regex pattern (Python Software Foundation, 2023)
 def get_player_name():
     while True:
         name = input("Enter your name to begin (letters only, 3-20 chars): ")
-        if re.fullmatch(r"[A-Za-z]{3,20}", name):
+        if re.fullmatch(r"[A-Za-z]{3,20}", name):  # Using re.fullmatch to enforce pattern
             return name
         else:
             print("You may only use letters for your name (3-20 characters).")
 
-# First Decision
+# First branching decision using if/elif/else (W3Schools, 2025)
 def decision_one(decisions):
     print("\nYou find yourself on a beach after crash landing during a great storm.")
     print("To your left are your weapons. To your right are your supplies.")
@@ -37,7 +37,7 @@ def decision_one(decisions):
         decisions.append("made no choice")
         return "Eventually, you stumble into a fishing village."
 
-# Second Decision
+# Second decision point with nested logic (Real Python, 2025)
 def decision_two(decisions):
     print("\nIn the small fishing village, you spot a 'hostel' and 'soldiers'.")
     choice = input("Do you approach the 'soldiers' or enter the 'hostel'? ").strip().lower()
@@ -47,7 +47,7 @@ def decision_two(decisions):
         if "grabbed weapons" in decisions:
             print("You grip your weapon tightly. The soldiers see you as a threat and attack.")
             decisions.append("fled into woods")
-            return woods_path(decisions)
+            return woods_path(decisions)  # Additional path function
         else:
             print("You carry no weapons. The soldiers see you're no threat and offer assistance.")
             return "They give you directions to the nearest port town."
@@ -76,7 +76,7 @@ def decision_two(decisions):
         decisions.append("ignored both")
         return "You wander aimlessly and eventually perish as the town drunk."
 
-# Third Branch – if fleeing into woods
+# Alternate path if player flees into woods
 def woods_path(decisions):
     print("\nWounded and weary, you flee into the woods.")
     print("To the left you spot signs of smoke and to your right is a cave nearby.")
@@ -96,19 +96,19 @@ def woods_path(decisions):
         decisions.append("froze in woods")
         return "Paralyzed by indecision, you collapse from exhaustion and are never found."
 
-# Save game data to JSON file
+# Save player decisions and outcome to a JSON file (Python Software Foundation, 2023)
 def save_game_data(name, decisions, outcome):
     game_data = {
         "player_name": name,
         "decisions": decisions,
         "outcome": outcome,
     }
-    with open("araluen_game_data.json", "w") as f:
+    with open("araluen_game_data.json", "w") as f:  # Writing to JSON file
         json.dump(game_data, f, indent=4)
 
     print("\n📝 Game data saved to 'araluen_game_data.json'")
 
-# Main Game Loop
+# Game loop using while structure (Real Python, 2025)
 def main():
     playing = True
     while playing:
@@ -124,7 +124,7 @@ def main():
         result2 = decision_two(decisions)
         print(result2)
 
-        # If result2 was a string, include it; otherwise, assume it came from woods_path and was handled inside
+        # Outcome collected from result1 and result2 if applicable
         outcome = [result1, result2] if isinstance(result2, str) else [result1]
 
         save_game_data(name, decisions, outcome)
@@ -137,3 +137,12 @@ def main():
 # Run the game
 if __name__ == "__main__":
     main()
+
+
+# ----------------------------------------------
+# Works Cited
+# ----------------------------------------------
+# Python Software Foundation. “re — Regular Expression Operations.” Python Documentation, https://docs.python.org/3/library/re.html. Accessed July 7, 2025.
+# Python Software Foundation. “json — JSON encoder and decoder.” Python Documentation, https://docs.python.org/3/library/json.html. Accessed July 7, 2025.
+# W3Schools. “Python If...Else.” https://www.w3schools.com/python/python_conditions.asp. Accessed July 7, 2025.
+# Real Python. “How to Use Python’s While Loop.” https://realpython.com/python-while-loop/. Accessed July 7, 2025.
